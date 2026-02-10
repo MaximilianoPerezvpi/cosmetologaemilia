@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Emilia Piñeyro | Cosmetóloga Médica en Montevideo</title>
+    
+    <meta name="description" content="Emilia Piñeyro: Cosmetóloga Médica con formación universitaria en EUTM-Udelar. Tratamientos faciales clínicos, evaluación personalizada y protocolos basados en evidencia en Montevideo.">
+    
+    <meta name="keywords" content="cosmetologa medica, emilia piñeyro, EUTM Udelar, limpieza facial montevideo, dermapen, peeling quimico, acné, rosácea, estética salud">
+    
+    <meta name="author" content="Emilia Piñeyro">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Emilia Piñeyro | Salud & Estética de la Piel">
+    <meta property="og:description" content="Cosmetología médica con respaldo universitario. Agendá tu evaluación personalizada.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop">
+    <meta property="og:url" content="https://emiliapineyro.com/">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+
+    <style>
+        :root {
+            /* Paleta: Clean, White, Soft Pink & Sage (Médico-Estético) */
+            --color-primary: #C5A491; /* Nude/Tierra suave */
+            --color-secondary: #F9F7F2; /* Blanco roto / Crema */
+            --color-accent: #8E9E82; /* Verde Salvia */
+            --text-dark: #4A4A4A;
+        }
+
+        .bg-primary { background-color: var(--color-primary) !important; }
+        .text-primary { color: var(--color-primary) !important; }
+        
+        body {
+            color: var(--text-dark);
+            background-color: #FFFFFF;
+        }
+
+        .bg-pattern {
+            background-color: var(--color-secondary);
+            background-image: radial-gradient(var(--color-primary) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        .icon-box {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #F3F4F6;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+            box-shadow: 0 15px 30px rgba(197, 164, 145, 0.15);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            background-color: #FAFAFA;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .form-input:focus { 
+            border-color: var(--color-primary);
+            background-color: white;
+            box-shadow: 0 0 0 4px rgba(197, 164, 145, 0.1);
+        }
+
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            height: 420px;
+        }
+        .service-card img {
+            transition: transform 0.6s ease;
+        }
+        .service-card:hover img { transform: scale(1.05); }
+        
+        .service-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: white;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Insta Feed Grid Mejorado */
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Móvil: 2 columnas */
+        }
+        @media (min-width: 768px) {
+            .insta-grid {
+                grid-template-columns: repeat(4, 1fr); /* Desktop: 4 columnas */
+            }
+        }
+        
+        .insta-item {
+            position: relative;
+            padding-bottom: 100%; /* Square aspect ratio */
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .insta-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s;
+        }
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .insta-item:hover .insta-overlay { opacity: 1; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(197, 164, 145, 0.2);
+        }
+
+        .btn-whatsapp-outline {
+            border: 1px solid #25D366;
+            color: #25D366;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-whatsapp-outline:hover {
+            background-color: #25D366;
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <header class="bg-white/95 backdrop-blur-md fixed w-full top-0 z-50 border-b border-gray-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="flex flex-col">
+                <span class="text-2xl font-serif text-gray-900 tracking-wide">EMILIA <span class="text-primary">PIÑEYRO</span></span>
+                <span class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Cosmetóloga Médica · UDELAR</span>
+            </div>
+            
+            <nav class="hidden lg:flex space-x-8 text-sm uppercase tracking-widest text-gray-500 font-medium">
+                <a href="#inicio" class="hover:text-primary transition-colors">Inicio</a>
+                <a href="#servicios" class="hover:text-primary transition-colors">Tratamientos</a>
+                <a href="#sobre-mi" class="hover:text-primary transition-colors">Bio</a>
+                <a href="#instagram" class="hover:text-primary transition-colors">Resultados</a>
+                <a href="#contacto" class="hover:text-primary transition-colors">Contacto</a>
+            </nav>
+            <a href="https://wa.me/59899821600" target="_blank" class="btn-primary text-xs md:text-sm">
+                Agendar Cita
+            </a>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative min-h-screen flex items-center pt-20 bg-[#F9F7F2]">
+        <div class="absolute right-0 top-0 w-full lg:w-1/2 h-full">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover object-top" alt="Emilia Piñeyro Cosmetóloga Médica">
+            <div class="absolute inset-0 bg-white/30 lg:bg-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 w-full">
+            <div class="lg:w-1/2 pt-12 lg:pt-0">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm mb-6 reveal-on-scroll">
+                    <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                    <span class="text-xs uppercase tracking-widest text-gray-600 font-bold">Salud & Medicina Estética</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-serif text-gray-900 mb-6 leading-tight reveal-on-scroll">
+                    Ciencia y cuidado <br>
+                    <span class="text-primary italic">para tu piel.</span>
+                </h1>
+                
+                <p class="text-lg text-gray-600 mb-8 max-w-md leading-relaxed reveal-on-scroll">
+                    Cosmetología médica con formación universitaria. Tratamientos personalizados basados en protocolos de evidencia clínica enfocados en la salud real de tu dermis.
+                </p>
+
+                <div class="mb-8 reveal-on-scroll">
+                     <a href="https://wa.me/59899821600?text=Hola%20Emilia,%20quisiera%20coordinar%20una%20evaluación" target="_blank" class="inline-flex items-center text-gray-500 hover:text-[#25D366] transition-colors font-medium border-b border-transparent hover:border-[#25D366] pb-0.5">
+                        <i class="ri-whatsapp-line mr-2 text-xl"></i>
+                        Escribime por WhatsApp y coordinamos tu evaluación &rarr;
+                    </a>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 reveal-on-scroll">
+                    <a href="#contacto" class="btn-primary text-center justify-center shadow-lg hover:shadow-xl">
+                        Solicitar Diagnóstico
+                    </a>
+                    <a href="#servicios" class="px-8 py-3 rounded-full border border-gray-300 text-gray-600 font-medium hover:bg-white hover:border-primary transition-all text-center">
+                        Ver Tratamientos
+                    </a>
+                </div>
+
+                <div class="mt-12 flex items-center gap-8 text-gray-400 reveal-on-scroll">
+                    <div class="text-center">
+                        <p class="text-2xl font-serif text-gray-900">Udelar</p>
+                        <p class="text-[10px] uppercase tracking-wider">Egresada</p>
+                    </div>
+                    <div class="w-px h-10 bg-gray-300"></div>
+                    <div class="text-center">
+                        <p class="text-2xl font-serif text-gray-900">100%</p>
+                        <p class="text-[10px] uppercase tracking-wider">Médico-Estético</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <span class="text-primary text-sm font-bold uppercase tracking-widest">Protocolos Personalizados</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-gray-900 mt-3 mb-6">Mis Especialidades</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">
+                    Cada piel es única. Trabajo con protocolos combinados para tratar acné, rosácea, envejecimiento y pigmentación.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card group reveal-on-scroll cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=2070&auto=format&fit=crop" alt="Higiene Facial Profunda" class="w-full h-full object-cover">
+                    <div class="service-overlay">
+                        <h3 class="text-2xl font-serif mb-2">Higiene Facial Clínica</h3>
+                        <p class="text-gray-200 text-sm opacity-90">Limpieza profunda con extracciones, paleta ultrasónica y principios activos según biotipo.</p>
+                    </div>
+                </div>
+
+                <div class="service-card group reveal-on-scroll" style="transition-delay: 100ms;">
+                    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=2070&auto=format&fit=crop" alt="Peelings Químicos" class="w-full h-full object-cover">
+                    <div class="service-overlay">
+                        <h3 class="text-2xl font-serif mb-2">Peelings Médicos</h3>
+                        <p class="text-gray-200 text-sm opacity-90">Renovación celular para tratar manchas, marcas de acné y luminosidad. Ácidos específicos.</p>
+                    </div>
+                </div>
+
+                <div class="service-card group reveal-on-scroll" style="transition-delay: 200ms;">
+                    <img src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?q=80&w=2070&auto=format&fit=crop" alt="Dermapen y Mesoterapia" class="w-full h-full object-cover">
+                    <div class="service-overlay">
+                        <h3 class="text-2xl font-serif mb-2">Microneedling / Dermapen</h3>
+                        <p class="text-gray-200 text-sm opacity-90">Inducción de colágeno para cicatrices, poros dilatados y rejuvenecimiento facial global.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center reveal-on-scroll flex flex-col items-center gap-4">
+                <p class="text-sm text-gray-500">También realizo: Radiofrecuencia · Tratamientos Corporales · Drenaje Linfático</p>
+                <a href="https://wa.me/59899821600?text=Hola,%20me%20interesa%20consultar%20por%20un%20tratamiento" target="_blank" class="btn-whatsapp-outline mt-2">
+                    <i class="ri-whatsapp-line"></i> Consultá tu caso por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-mi" class="py-24 bg-[#F9F7F2]">
+        <div class="max-w-7xl mx-auto px-4 lg:flex items-center gap-16">
+            <div class="lg:w-1/2 relative reveal-on-scroll">
+                <div class="absolute -top-4 -left-4 w-full h-full border-2 border-primary/30 rounded-3xl"></div>
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop" class="relative rounded-3xl shadow-xl w-full" alt="Emilia Piñeyro en consultorio">
+                
+                <div class="absolute bottom-8 right-8 bg-white p-6 rounded-xl shadow-lg max-w-xs animate-float hidden md:block">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="ri-medal-line text-primary text-2xl"></i>
+                        <span class="font-bold text-gray-800">Profesional Titulada</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Formación académica continua para garantizar tu seguridad.</p>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 mt-12 lg:mt-0 reveal-on-scroll">
+                <h2 class="text-4xl font-serif text-gray-900 mb-6">Emilia Piñeyro</h2>
+                <h3 class="text-primary font-medium uppercase tracking-widest mb-6">Cosmetóloga Médica · EUTM UDELAR</h3>
+                
+                <div class="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
+                    <p>
+                        Mi pasión es la <strong>salud de la piel</strong>. Con formación en la Escuela Universitaria de Tecnología Médica, abordo la estética desde un punto de vista clínico, ético y basado en evidencia.
+                    </p>
+                    <p>
+                        No creo en soluciones mágicas, sino en la constancia, el diagnóstico correcto y el uso de principios activos de calidad. En mi consultorio, cada paciente recibe una evaluación exhaustiva para diseñar una rutina que se adapte a su estilo de vida y necesidades reales.
+                    </p>
+                    
+                    <p class="text-base font-medium text-gray-800 pt-2">
+                        <a href="https://wa.me/59899821600?text=Hola,%20tengo%20dudas%20sobre%20mi%20tipo%20de%20piel" class="inline-flex items-center hover:text-primary transition-colors">
+                            <i class="ri-chat-1-line mr-2 text-primary"></i>
+                            ¿Tenés dudas sobre tu tipo de piel? Escribime.
+                        </a>
+                    </p>
+
+                    <ul class="space-y-3 mt-4 text-sm font-medium text-gray-700 pt-4 border-t border-gray-200">
+                        <li class="flex items-center gap-3">
+                            <i class="ri-check-double-line text-primary"></i> Atención personalizada y ética.
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ri-check-double-line text-primary"></i> Ambiente seguro e higiénico.
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ri-check-double-line text-primary"></i> Tecnología probada y cosmecéuticos premium.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instagram" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 text-center mb-12">
+            <i class="ri-instagram-line text-3xl text-primary mb-4"></i>
+            <h2 class="text-3xl font-serif text-gray-900 mb-2">@emilia_cosmetologa_medica</h2>
+            <p class="text-gray-500 text-sm">Seguime para tips de skincare, antes y después y novedades.</p>
+        </div>
+
+        <div class="max-w-6xl mx-auto insta-grid">
+            <div class="insta-item reveal-on-scroll">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop" alt="Resultados Piel">
+                <a href="https://www.instagram.com/emilia_cosmetologa_medica/" target="_blank" class="insta-overlay">
+                    <i class="ri-heart-fill text-white text-3xl"></i>
+                </a>
+            </div>
+            <div class="insta-item reveal-on-scroll" style="transition-delay: 50ms;">
+                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=2070&auto=format&fit=crop" alt="Productos Skincare">
+                <a href="https://www.instagram.com/emilia_cosmetologa_medica/" target="_blank" class="insta-overlay">
+                    <i class="ri-heart-fill text-white text-3xl"></i>
+                </a>
+            </div>
+            <div class="insta-item reveal-on-scroll" style="transition-delay: 100ms;">
+                <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=2070&auto=format&fit=crop" alt="Consultorio Estético">
+                <a href="https://www.instagram.com/emilia_cosmetologa_medica/" target="_blank" class="insta-overlay">
+                    <i class="ri-heart-fill text-white text-3xl"></i>
+                </a>
+            </div>
+            <div class="insta-item reveal-on-scroll" style="transition-delay: 150ms;">
+                <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2070&auto=format&fit=crop" alt="Tratamiento Facial">
+                <a href="https://www.instagram.com/emilia_cosmetologa_medica/" target="_blank" class="insta-overlay">
+                    <i class="ri-play-fill text-white text-4xl"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="text-center mt-10 space-y-3">
+            <p class="text-lg font-medium text-gray-800">¿Viste los resultados? Tu piel puede verse así.</p>
+            <div class="flex justify-center gap-4">
+                <a href="https://wa.me/59899821600?text=Hola,%20vi%20tus%20resultados%20en%20la%20web" target="_blank" class="inline-flex items-center text-[#25D366] font-bold hover:underline">
+                    <i class="ri-whatsapp-line mr-1"></i> Escribime y evaluamos tu caso
+                </a>
+                <span class="text-gray-300">|</span>
+                <a href="https://www.instagram.com/emilia_cosmetologa_medica/" target="_blank" class="text-gray-500 hover:text-primary transition font-medium">
+                    Ver más en Instagram &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 bg-[#FAFAFA] relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden md:flex">
+                <div class="md:w-1/2 p-10 bg-primary text-white flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-3xl font-serif mb-6">Agendá tu consulta</h2>
+                        <p class="text-white/80 mb-8 font-light leading-relaxed">
+                            Da el primer paso hacia una piel saludable. Escribime para coordinar tu evaluación o aclarar dudas sobre los tratamientos.<br>
+                            <span class="text-white/70 text-sm italic mt-2 inline-block">Todos mis tratamientos incluyen seguimiento continuo y acompañamiento profesional.</span>
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                    <i class="ri-whatsapp-line text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase opacity-70">WhatsApp</p>
+                                    <p class="font-medium">099 821 600</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                    <i class="ri-map-pin-line text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase opacity-70">Consultorio</p>
+                                    <p class="font-medium">Montevideo, Uruguay</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 flex gap-4">
+                        <a href="https://www.instagram.com/emilia_cosmetologa_medica/" target="_blank" class="opacity-70 hover:opacity-100 transition"><i class="ri-instagram-line text-2xl"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#8deee2e3f9eceef9e2cde8e0e4e1e4ecfde4e3e8f4ffe2a3eee2e0" class="opacity-70 hover:opacity-100 transition"><i class="ri-mail-line text-2xl"></i></a>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 p-10">
+                    <form id="contact-form" class="space-y-5">
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Nombre Completo</label>
+                            <input type="text" name="nombre" class="form-input mt-1" placeholder="Ej. Ana García" required>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Teléfono / WhatsApp</label>
+                            <input type="tel" name="telefono" class="form-input mt-1" placeholder="099..." required>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Motivo de consulta</label>
+                            <select name="motivo" class="form-input mt-1">
+                                <option>Evaluación Facial</option>
+                                <option>Tratamiento de Acné</option>
+                                <option>Antiage / Rejuvenecimiento</option>
+                                <option>Peeling</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <button type="submit" id="btn-submit" class="w-full bg-gray-900 text-white py-4 rounded-lg font-medium hover:bg-gray-800 transition shadow-lg">
+                            Enviar Mensaje
+                        </button>
+                        <p id="form-success" class="hidden text-green-600 text-center text-sm mt-3">¡Mensaje enviado! Te responderé pronto.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <span class="text-xl font-serif tracking-wide">EMILIA PIÑEYRO</span>
+                <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest">Cosmetología Médica Integral</p>
+            </div>
+            
+            <div class="text-sm text-gray-500">
+                &copy; 2026 Todos los derechos reservados.
+            </div>
+            
+            <div class="text-xs text-gray-600/40">
+                Sitio web diseñado por Maximiliano Perez · 2026
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/59899821600" class="fixed bottom-6 right-6 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-[100] hover:scale-110 transition-transform">
+        <i class="ri-whatsapp-line text-3xl"></i>
+    </a>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Animaciones Scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+            // EmailJS Config
+            const PUBLIC_KEY = "TItfJeV8MLV6pR3Lc"; 
+            const SERVICE_ID = "service_2qeuge7";
+            const TEMPLATE_ID = "template_o42lg9t";
+            
+            emailjs.init(PUBLIC_KEY);
+
+            const contactForm = document.getElementById('contact-form');
+            const btnSubmit = document.getElementById('btn-submit');
+            const successMsg = document.getElementById("form-success");
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    btnSubmit.innerText = "Enviando...";
+                    btnSubmit.disabled = true;
+                    
+                    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+                        .then(() => {
+                            successMsg.classList.remove("hidden");
+                            contactForm.reset();
+                            btnSubmit.innerText = "Enviar Mensaje";
+                            btnSubmit.disabled = false;
+                            setTimeout(() => successMsg.classList.add("hidden"), 5000);
+                        }, (err) => {
+                            alert("Error momentáneo. Por favor escribinos por WhatsApp.");
+                            btnSubmit.innerText = "Reintentar";
+                                     btnSubmit.disabled = false;
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
